@@ -1,0 +1,43 @@
+services:
+  # Backend API Server
+  - type: web
+    name: autogpt-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: DIRECT_URL
+        sync: false
+      - key: REDIS_HOST
+        sync: false
+      - key: REDIS_PORT
+        value: 6379
+      - key: RABBITMQ_DEFAULT_USER
+        value: autogpt
+      - key: RABBITMQ_DEFAULT_PASS
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: JWT_VERIFY_KEY
+        sync: false
+      - key: ENCRYPTION_KEY
+        sync: false
+      - key: UNSUBSCRIBE_SECRET_KEY
+        sync: false
+      - key: PLATFORM_BASE_URL
+        sync: false
+      - key: FRONTEND_BASE_URL
+        sync: false
+      - key: DB_SCHEMA
+        value: platform
+    healthCheckPath: /health
+
+databases:
+  - name: autogpt-db
+    databaseName: autogpt
+    user: autogpt
+    plan: free
