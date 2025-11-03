@@ -3,8 +3,8 @@ services:
   - type: web
     name: autogpt-backend
     runtime: docker
-    dockerfilePath: ./backend/Dockerfile
-    dockerContext: ./backend
+    dockerfilePath: ./autogpt_platform/backend/Dockerfile
+    dockerContext: ./autogpt_platform/backend
     envVars:
       - key: DATABASE_URL
         sync: false
