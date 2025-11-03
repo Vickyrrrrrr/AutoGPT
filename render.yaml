@@ -3,8 +3,8 @@ services:
   - type: web
     name: autogpt-backend
     runtime: docker
-    dockerfilePath: ./backend/Dockerfile
-    dockerContext: ./backend
+    dockerfilePath: ./autogpt_platform/backend/Dockerfile
+    dockerContext: ./autogpt_platform/backend
     envVars:
       - key: DATABASE_URL
         sync: false
@@ -14,9 +14,7 @@ services:
         sync: false
       - key: REDIS_PORT
         value: 6379
-      - key: RABBITMQ_DEFAULT_USER
-        value: autogpt
-      - key: RABBITMQ_DEFAULT_PASS
+      - key: RABBITMQ_URL
         sync: false
       - key: SUPABASE_URL
         sync: false
@@ -35,9 +33,3 @@ services:
       - key: DB_SCHEMA
         value: platform
     healthCheckPath: /health
-
-databases:
-  - name: autogpt-db
-    databaseName: autogpt
-    user: autogpt
-    plan: free
